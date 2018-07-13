@@ -24,6 +24,7 @@ import org.mockito.MockitoAnnotations;
 public class TillTest {
   private Till till;
   private HashMap<String, String> shopDetails;
+  private HashMap<String, String> menu;
 
   @Mock
   private OrderFactory orderFactory;
@@ -46,15 +47,13 @@ public class TillTest {
   @BeforeAll
   public void setUpShopDetails() {
     shopDetails = new HashMap();
-    shopDetails.put("shopName", "The Coffee Connection");
-    shopDetails.put("address", "123 Lakeside Way");
-    shopDetails.put("phone", "441220360070");
+    menu = new HashMap();
   }
 
   @BeforeEach
   public void setUp() {
     MockitoAnnotations.initMocks(this);
-    when(orderFactory.getOrder(any())).thenReturn(order);
+    when(orderFactory.getOrder(menu)).thenReturn(order);
     when(receiptFactory.getReceipt(any(), any())).thenReturn(receipt);
     when(parser.getShopDetails()).thenReturn(shopDetails);
     till = new Till(receiptFactory, orderFactory, printer, parser);
