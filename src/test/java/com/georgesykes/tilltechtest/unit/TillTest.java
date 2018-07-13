@@ -1,5 +1,6 @@
 package com.georgesykes.tilltechtest.unit;
 
+import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -37,7 +38,7 @@ public class TillTest {
     MockitoAnnotations.initMocks(this);
     till = new Till(receiptFactory, orderFactory, printer);
     when(orderFactory.getOrder()).thenReturn(order);
-    when(receiptFactory.getReceipt()).thenReturn(receipt);
+    when(receiptFactory.getReceipt(any())).thenReturn(receipt);
     till.addTable(1,4);
   }
 
@@ -50,6 +51,12 @@ public class TillTest {
   public void addsItemToOrder() {
     till.addItem("Cafe Latte", 1);
     verify(order).addItem("Cafe Latte", 1);
+  }
+
+  @Test
+  public void generatesReceipt() {
+    till.printReceipt();
+    verify(receiptFactory).getReceipt(order);
   }
 
 

@@ -23,5 +23,6 @@ public class Till {
   }
 
   public void printReceipt() {
+    Receipt receipt = receiptFactory.getReceipt(this.order);
   }
 }

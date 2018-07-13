@@ -2,7 +2,7 @@ package com.georgesykes.tilltechtest;
 
 public class ReceiptFactory {
 
-  public Object getReceipt() {
-    return new Receipt();
+  public Receipt getReceipt(Order order) {
+    return new Receipt(order);
   }
 }
