@@ -38,12 +38,18 @@ public class TillTest {
     till = new Till(receiptFactory, orderFactory, printer);
     when(orderFactory.getOrder()).thenReturn(order);
     when(receiptFactory.getReceipt()).thenReturn(receipt);
+    till.addTable(1,4);
   }
 
   @Test
   public void addsTableDetails() {
-    till.addTable(1,4);
     verify(order).updateCustomerDetails(1,4);
+  }
+
+  @Test
+  public void addsItemToOrder() {
+    till.addItem("Cafe Latte", 1);
+    verify(order).addItem("Cafe Latte", 1);
   }
 
 

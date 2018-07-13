@@ -18,7 +18,8 @@ public class Till {
     this.order.updateCustomerDetails(tableNum, numPeople);
   }
 
-  public void addItem(String choc_mousse, int i) {
+  public void addItem(String item, int quantity) {
+    this.order.addItem(item, quantity);
   }
 
   public void printReceipt() {
