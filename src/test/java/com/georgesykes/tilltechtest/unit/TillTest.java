@@ -59,5 +59,11 @@ public class TillTest {
     verify(receiptFactory).getReceipt(order);
   }
 
+  @Test
+  public void printsReceipt() {
+    till.printReceipt();
+    verify(printer).print(receipt);
+  }
+
 
 }
