@@ -4,6 +4,6 @@ import java.util.HashMap;
 
 public class Printer {
 
-  public void print(Receipt receipt, HashMap shopDetails) {
+  public void print(Receipt receipt) {
   }
 }

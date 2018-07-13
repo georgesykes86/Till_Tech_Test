@@ -8,6 +8,7 @@ public class Till {
   private Printer printer;
   private Order order;
   private HashMap shopDetails;
+  private MenuParser parser;
 
   public Till(ReceiptFactory receiptFactory, OrderFactory orderFactory, Printer printer, MenuParser parser) {
     this.receiptFactory = receiptFactory;
@@ -15,10 +16,11 @@ public class Till {
     this.printer = printer;
     this.order = null;
     this.shopDetails = parser.getShopDetails();
+    this.parser = parser;
   }
 
   public void addTable(int tableNum, int numPeople) {
-    this.order = orderFactory.getOrder();
+    this.order = orderFactory.getOrder(this.parser.getMenu());
     this.order.updateCustomerDetails(tableNum, numPeople);
   }
 
@@ -27,6 +29,6 @@ public class Till {
   }
 
   public void printReceipt() {
-    printer.print(receiptFactory.getReceipt(this.order), this.shopDetails);
+    printer.print(receiptFactory.getReceipt(this.order, this.shopDetails));
   }
 }

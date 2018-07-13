@@ -1,8 +1,10 @@
 package com.georgesykes.tilltechtest;
 
+import java.util.HashMap;
+
 public class OrderFactory {
 
-  public Order getOrder() {
-    return new Order();
+  public Order getOrder(HashMap menu) {
+    return new Order(menu);
   }
 }

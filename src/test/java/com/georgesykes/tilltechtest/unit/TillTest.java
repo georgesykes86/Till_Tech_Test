@@ -54,8 +54,8 @@ public class TillTest {
   @BeforeEach
   public void setUp() {
     MockitoAnnotations.initMocks(this);
-    when(orderFactory.getOrder()).thenReturn(order);
-    when(receiptFactory.getReceipt(any())).thenReturn(receipt);
+    when(orderFactory.getOrder(any())).thenReturn(order);
+    when(receiptFactory.getReceipt(any(), any())).thenReturn(receipt);
     when(parser.getShopDetails()).thenReturn(shopDetails);
     till = new Till(receiptFactory, orderFactory, printer, parser);
     till.addTable(1,4);
@@ -75,13 +75,13 @@ public class TillTest {
   @Test
   public void generatesReceipt() {
     till.printReceipt();
-    verify(receiptFactory).getReceipt(order);
+    verify(receiptFactory).getReceipt(order, shopDetails);
   }
 
   @Test
   public void printsReceipt() {
     till.printReceipt();
-    verify(printer).print(receipt, shopDetails);
+    verify(printer).print(receipt);
   }
 
 
