@@ -21,7 +21,7 @@ public class PrintsReceiptTest {
 
   @BeforeEach
   public void setUp() {
-    till = new Till(new ReceiptFactory(), new OrderFactory(), new Printer());
+    till = new Till(new ReceiptFactory(), new OrderFactory(), new Printer(), new MenuParser());
     System.setOut(new PrintStream(output));
   }
 

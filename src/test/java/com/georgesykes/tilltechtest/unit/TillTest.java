@@ -4,19 +4,26 @@ import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import com.georgesykes.tilltechtest.MenuParser;
 import com.georgesykes.tilltechtest.Order;
 import com.georgesykes.tilltechtest.OrderFactory;
 import com.georgesykes.tilltechtest.Printer;
 import com.georgesykes.tilltechtest.Receipt;
 import com.georgesykes.tilltechtest.ReceiptFactory;
 import com.georgesykes.tilltechtest.Till;
+import java.util.HashMap;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.TestInstance.Lifecycle;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+@TestInstance(Lifecycle.PER_CLASS)
 public class TillTest {
   private Till till;
+  private HashMap<String, String> shopDetails;
 
   @Mock
   private OrderFactory orderFactory;
@@ -33,12 +40,24 @@ public class TillTest {
   @Mock
   private Printer printer;
 
+  @Mock
+  private MenuParser parser;
+
+  @BeforeAll
+  public void setUpShopDetails() {
+    shopDetails = new HashMap();
+    shopDetails.put("shopName", "The Coffee Connection");
+    shopDetails.put("address", "123 Lakeside Way");
+    shopDetails.put("phone", "441220360070");
+  }
+
   @BeforeEach
   public void setUp() {
     MockitoAnnotations.initMocks(this);
-    till = new Till(receiptFactory, orderFactory, printer);
     when(orderFactory.getOrder()).thenReturn(order);
     when(receiptFactory.getReceipt(any())).thenReturn(receipt);
+    when(parser.getShopDetails()).thenReturn(shopDetails);
+    till = new Till(receiptFactory, orderFactory, printer, parser);
     till.addTable(1,4);
   }
 
@@ -62,7 +81,7 @@ public class TillTest {
   @Test
   public void printsReceipt() {
     till.printReceipt();
-    verify(printer).print(receipt);
+    verify(printer).print(receipt, shopDetails);
   }
 
 

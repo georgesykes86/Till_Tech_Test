@@ -1,16 +1,20 @@
 package com.georgesykes.tilltechtest;
 
+import java.util.HashMap;
+
 public class Till {
   private OrderFactory orderFactory;
   private ReceiptFactory receiptFactory;
   private Printer printer;
   private Order order;
+  private HashMap shopDetails;
 
-  public Till(ReceiptFactory receiptFactory, OrderFactory orderFactory, Printer printer) {
+  public Till(ReceiptFactory receiptFactory, OrderFactory orderFactory, Printer printer, MenuParser parser) {
     this.receiptFactory = receiptFactory;
     this.orderFactory = orderFactory;
     this.printer = printer;
     this.order = null;
+    this.shopDetails = parser.getShopDetails();
   }
 
   public void addTable(int tableNum, int numPeople) {
@@ -23,6 +27,6 @@ public class Till {
   }
 
   public void printReceipt() {
-    printer.print(receiptFactory.getReceipt(this.order));
+    printer.print(receiptFactory.getReceipt(this.order), this.shopDetails);
   }
 }
