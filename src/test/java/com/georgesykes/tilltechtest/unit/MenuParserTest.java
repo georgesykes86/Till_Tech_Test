@@ -31,4 +31,9 @@ public class MenuParserTest {
   public void returnsShopDetailsPhoneCorrectly() {
     assertEquals("441220360070", parser.getShopDetails().get("phone"));
   }
+
+  @Test
+  public void returnsMenuCorrectly() {
+    assertEquals(4.75, parser.getMenu().get("Cafe Latte"));
+  }
 }
