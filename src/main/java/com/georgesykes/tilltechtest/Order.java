@@ -21,9 +21,7 @@ public class Order {
     return this.customerDetails.getTableNum();
   }
 
-  public Object getPeopleNum() {
-    return "String";
-  }
+  public int getPeopleNum() { return this.customerDetails.getNumPeople(); }
 
   public Object getTotal() {
     return "String";

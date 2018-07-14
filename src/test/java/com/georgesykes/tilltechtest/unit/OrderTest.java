@@ -27,6 +27,7 @@ public class OrderTest {
   public void setUp() {
     MockitoAnnotations.initMocks(this);
     when(details.getTableNum()).thenReturn(2);
+    when(details.getNumPeople()).thenReturn(5);
     order = factory.getOrder(details, list);
   }
 
@@ -39,6 +40,11 @@ public class OrderTest {
   @Test
   public void returnTableNum() {
     assertEquals(2, order.getTableNum());
+  }
+
+  @Test
+  public void returnNumberPeople() {
+    assertEquals(5, order.getPeopleNum());
   }
 
 }
