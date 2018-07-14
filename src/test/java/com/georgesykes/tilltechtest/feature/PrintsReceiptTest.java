@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.georgesykes.tilltechtest.*;
 import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.IOException;
 import java.io.PrintStream;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -14,14 +16,15 @@ public class PrintsReceiptTest {
   private Till till;
 
   private final ByteArrayOutputStream output = new ByteArrayOutputStream();
+  private String filePath = new File("").getAbsolutePath();
 
   private final String firstReceipt = "The Coffee Connection\n\n123 Lakeside Way\nPhone: +44 (1220) 360070\n"
       + "Table: 1 / [4]\n\tChoc Mousse      \t\t1 x 8.20\n\tCappucino        \t\t2 x 3.85\n\tMuffin Of The Day\t\t4 x 4.55\n"
       + "Tax  \t\t\t\t\t\t\t\t\t£6.82\nTotal\t\t\t\t\t\t\t\t\t£40.92";
 
   @BeforeEach
-  public void setUp() {
-    till = new Till(new ReceiptFactory(), new OrderFactory(), new Printer(), new MenuParser());
+  public void setUp() throws IOException {
+    till = new Till(new ReceiptFactory(), new OrderFactory(), new Printer(), new MenuParser(filePath + "/src/main/resources/menu.json"));
     System.setOut(new PrintStream(output));
   }
 
