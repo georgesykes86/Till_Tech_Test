@@ -53,5 +53,11 @@ public class ItemListTest {
     assertEquals(item, firstItem.get("item"));
   }
 
+  @Test
+  public void addsCorectQuantity() {
+    HashMap firstItem = (HashMap) list.getItems().get(0);
+    assertEquals(1, firstItem.get("quantity"));
+  }
+
 
 }
