@@ -7,6 +7,7 @@ import java.util.HashMap;
 public class Order {
   private CustomerDetails customerDetails;
   private ItemList itemList;
+  private final Double TAX = 0.2;
 
   public Order(CustomerDetails details, ItemList list){
     this.customerDetails = details;
@@ -27,11 +28,16 @@ public class Order {
     return "String";
   }
 
-  public Object getTaxTotal() {
-    return "String";
+  public Double getTaxTotal() {
+    Double totalTax = 0.0;
+    for(HashMap item : this.getItems()) {
+      Item itemDet = (Item) item.get("item");
+      totalTax = this.TAX * ((int)item.get("quantity") * itemDet.getPrice()) + totalTax;
+    }
+    return totalTax;
   }
 
   public Collection<HashMap> getItems() {
-    return new ArrayList<>();
+    return this.itemList.getItems();
   }
 }
