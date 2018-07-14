@@ -8,6 +8,8 @@ import com.georgesykes.tilltechtest.CustomerDetails;
 import com.georgesykes.tilltechtest.ItemList;
 import com.georgesykes.tilltechtest.Order;
 import com.georgesykes.tilltechtest.OrderFactory;
+import java.util.ArrayList;
+import java.util.HashMap;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -16,6 +18,7 @@ import org.mockito.MockitoAnnotations;
 public class OrderTest {
   private Order order;
   private OrderFactory factory = new OrderFactory();
+  private ArrayList<HashMap> items = new ArrayList();
 
   @Mock
   private CustomerDetails details;
@@ -28,6 +31,7 @@ public class OrderTest {
     MockitoAnnotations.initMocks(this);
     when(details.getTableNum()).thenReturn(2);
     when(details.getNumPeople()).thenReturn(5);
+    when(list.getItems()).thenReturn(items);
     order = factory.getOrder(details, list);
   }
 
@@ -45,6 +49,11 @@ public class OrderTest {
   @Test
   public void returnNumberPeople() {
     assertEquals(5, order.getPeopleNum());
+  }
+
+  @Test
+  public void returnItemList() {
+    assertEquals(items, order.getItems());
   }
 
 }
