@@ -8,6 +8,7 @@ import com.georgesykes.tilltechtest.ItemFactory;
 import com.georgesykes.tilltechtest.ItemList;
 import com.georgesykes.tilltechtest.ItemListFactory;
 import java.util.HashMap;
+import java.util.Map;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -45,5 +46,12 @@ public class ItemListTest {
   public void addsNewItem() {
     assertEquals(1, list.getItems().size());
   }
+
+  @Test
+  public void addsItemToItemHash() {
+    HashMap firstItem = (HashMap) list.getItems().get(0);
+    assertEquals(item, firstItem.get("item"));
+  }
+
 
 }
