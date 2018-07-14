@@ -11,7 +11,7 @@ public class ItemTest {
   private Item item;
   private ItemFactory factory = new ItemFactory();
   private String name = "Coffee";
-  private Float price = 2.50f;
+  private Double price = 2.50;
 
   @BeforeEach
   public void setUp() {

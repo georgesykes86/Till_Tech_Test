@@ -20,8 +20,8 @@ public class Till {
   }
 
   public void addTable(int tableNum, int numPeople) {
-    this.order = orderFactory.getOrder(this.parser.getMenu());
-    this.order.updateCustomerDetails(tableNum, numPeople);
+//    this.order = orderFactory.getOrder(this.parser.getMenu());
+//    this.order.updateCustomerDetails(tableNum, numPeople);
   }
 
   public void addItem(String item, int quantity) {

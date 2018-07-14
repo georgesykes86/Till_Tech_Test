@@ -5,9 +5,9 @@ import lombok.Data;
 @Data
 public class Item {
   private String name;
-  private Float price;
+  private Double price;
 
-  public Item(String name, Float price) {
+  public Item(String name, Double price) {
     this.name = name;
     this.price = price;
   }

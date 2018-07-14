@@ -31,13 +31,13 @@ public class ItemListTest {
 
   @BeforeAll
   public void before() {
-    menu.put("Coffee", 1.00f);
+    menu.put("Coffee", 1.00);
   }
 
   @BeforeEach
   public void setUp() {
     MockitoAnnotations.initMocks(this);
-    when(factory.getItem("Coffee", 1.00f)).thenReturn(item);
+    when(factory.getItem("Coffee", 1.00)).thenReturn(item);
     list = itemListFactory.getItemList(menu, factory);
     list.addItem("Coffee", 1);
   }

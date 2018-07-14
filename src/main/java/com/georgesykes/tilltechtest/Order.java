@@ -5,15 +5,16 @@ import java.util.Collection;
 import java.util.HashMap;
 
 public class Order {
+  private CustomerDetails customerDetails;
+  private ItemList itemList;
 
-  public Order(HashMap menu){
-
-  }
-
-  public void updateCustomerDetails(int tableNum, int numPeople) {
+  public Order(CustomerDetails details, ItemList list){
+    this.customerDetails = details;
+    this.itemList = list;
   }
 
   public void addItem(String item, int quantity) {
+    this.itemList.addItem(item, quantity);
   }
 
   public Object getTableNum() {

@@ -46,7 +46,7 @@ public class ReceiptTest {
       put("quantity", 1);
     }});
     when(firstItem.getName()).thenReturn("Coffee");
-    when(firstItem.getPrice()).thenReturn(1.00f);
+    when(firstItem.getPrice()).thenReturn(1.00);
     when(firstOrder.getTableNum()).thenReturn(1);
     when(firstOrder.getPeopleNum()).thenReturn(4);
     when(firstOrder.getItems()).thenReturn(firstOrders);

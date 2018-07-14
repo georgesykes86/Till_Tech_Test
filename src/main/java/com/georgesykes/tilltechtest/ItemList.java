@@ -17,7 +17,7 @@ public class ItemList {
 
   public void addItem(String item, int quantity) {
     HashMap entry = new HashMap();
-    entry.put("item", this.factory.getItem(item, (float) this.menu.get(item)));
+    entry.put("item", this.factory.getItem(item, (Double)this.menu.get(item)));
     entry.put("quantity", quantity);
     this.items.add(entry);
   }
