@@ -24,20 +24,24 @@ public class Order {
 
   public int getPeopleNum() { return this.customerDetails.getNumPeople(); }
 
-  public Object getTotal() {
-    return "String";
+  public Double getTotal() {
+    return this.calculateSubTotal() + this.getTaxTotal();
   }
 
   public Double getTaxTotal() {
-    Double totalTax = 0.0;
-    for(HashMap item : this.getItems()) {
-      Item itemDet = (Item) item.get("item");
-      totalTax = this.TAX * ((int)item.get("quantity") * itemDet.getPrice()) + totalTax;
-    }
-    return totalTax;
+    return this.calculateSubTotal() * this.TAX;
   }
 
   public Collection<HashMap> getItems() {
     return this.itemList.getItems();
+  }
+
+  private Double calculateSubTotal() {
+    Double subTotal = 0.0;
+    for(HashMap item : this.getItems()) {
+      Item itemDet = (Item) item.get("item");
+      subTotal = ((int)item.get("quantity") * itemDet.getPrice()) + subTotal;
+    }
+    return subTotal;
   }
 }

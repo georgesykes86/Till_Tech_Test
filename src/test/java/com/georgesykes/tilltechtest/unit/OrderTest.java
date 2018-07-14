@@ -87,4 +87,9 @@ public class OrderTest {
     assertEquals((Double) 0.6, order.getTaxTotal(), 0.001);
   }
 
+  @Test
+  public void calculateTotal() {
+    assertEquals((Double) 3.6, order.getTotal(), 0.001);
+  }
+
 }
