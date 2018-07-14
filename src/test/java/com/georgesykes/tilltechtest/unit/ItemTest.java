@@ -23,4 +23,9 @@ public class ItemTest {
     assertEquals(name, item.getName());
   }
 
+  @Test
+  public void returnPrice() {
+    assertEquals(price, item.getPrice());
+  }
+
 }
