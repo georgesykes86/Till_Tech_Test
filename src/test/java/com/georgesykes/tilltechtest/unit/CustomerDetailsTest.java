@@ -23,4 +23,9 @@ public class CustomerDetailsTest {
     assertEquals(tableNum, details.getTableNum());
   }
 
+  @Test
+  public void returnsNumPeople() {
+    assertEquals(numPeople, details.getNumPeople());
+  }
+
 }
