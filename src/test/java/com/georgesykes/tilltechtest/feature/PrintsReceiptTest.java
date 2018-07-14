@@ -19,7 +19,7 @@ public class PrintsReceiptTest {
   private String filePath = new File("").getAbsolutePath();
 
   private final String firstReceipt = "The Coffee Connection\n\n123 Lakeside Way\nPhone: +44 (1220) 360070\n"
-      + "Table: 1 / [4]\n\tChoc Mousse      \t\t1 x 8.20\n\tCappucino        \t\t2 x 3.85\n\tMuffin Of The Day\t\t4 x 4.55\n"
+      + "Table: 1 / [4]\n\tChoc Mousse      \t\t1 x 8.20\n\tCappucino      \t\t2 x 3.85\n\tMuffin Of The Day      \t\t4 x 4.55\n"
       + "Tax  \t\t\t\t\t\t\t\t\t£6.82\nTotal\t\t\t\t\t\t\t\t\t£40.92";
 
   @BeforeEach
