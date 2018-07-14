@@ -1,10 +1,10 @@
 package com.georgesykes.tilltechtest;
 
-import java.util.HashMap;
+import java.util.Map;
 
 public class Receipt {
 
-  public Receipt(Order order, HashMap shopDetails) {
+  public Receipt(Order order, Map shopDetails) {
 
   }
 

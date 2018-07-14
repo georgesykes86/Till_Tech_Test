@@ -1,13 +1,13 @@
 package com.georgesykes.tilltechtest;
 
-import java.util.HashMap;
+import java.util.Map;
 
 public class Till {
   private OrderFactory orderFactory;
   private ReceiptFactory receiptFactory;
   private Printer printer;
   private Order order;
-  private HashMap shopDetails;
+  private Map shopDetails;
   private MenuParser parser;
 
   public Till(ReceiptFactory receiptFactory, OrderFactory orderFactory, Printer printer, MenuParser parser) {
