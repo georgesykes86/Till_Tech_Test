@@ -24,7 +24,8 @@ public class PrintsReceiptTest {
 
   @BeforeEach
   public void setUp() throws IOException {
-    till = new Till(new ReceiptFactory(), new OrderFactory(), new Printer(), new MenuParser(filePath + "/src/main/resources/menu.json"));
+    till = new Till(new ReceiptFactory(), new OrderFactory(), new Printer(), new MenuParser(filePath + "/src/main/resources/menu.json"),
+        new ItemListFactory(), new ItemFactory(), new CustomerDetailsFactory());
     System.setOut(new PrintStream(output));
   }
 

@@ -1,9 +1,16 @@
 package com.georgesykes.tilltechtest.unit;
 
 import static org.mockito.Matchers.any;
+import static org.mockito.Matchers.anyInt;
+import static org.mockito.Matchers.anyObject;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import com.georgesykes.tilltechtest.CustomerDetails;
+import com.georgesykes.tilltechtest.CustomerDetailsFactory;
+import com.georgesykes.tilltechtest.ItemFactory;
+import com.georgesykes.tilltechtest.ItemList;
+import com.georgesykes.tilltechtest.ItemListFactory;
 import com.georgesykes.tilltechtest.MenuParser;
 import com.georgesykes.tilltechtest.Order;
 import com.georgesykes.tilltechtest.OrderFactory;
@@ -44,6 +51,21 @@ public class TillTest {
   @Mock
   private MenuParser parser;
 
+  @Mock
+  private ItemListFactory ilf;
+
+  @Mock
+  private ItemFactory itemFactory;
+
+  @Mock
+  private CustomerDetailsFactory cdf;
+
+  @Mock
+  private ItemList list;
+
+  @Mock
+  private CustomerDetails details;
+
   @BeforeAll
   public void setUpShopDetails() {
     shopDetails = new HashMap();
@@ -53,17 +75,19 @@ public class TillTest {
   @BeforeEach
   public void setUp() {
     MockitoAnnotations.initMocks(this);
-    when(orderFactory.getOrder(any(), any())).thenReturn(order); // check args
-    when(receiptFactory.getReceipt(any(), any())).thenReturn(receipt);
+    when(orderFactory.getOrder(anyObject(), anyObject())).thenReturn(order);
+    when(receiptFactory.getReceipt(anyObject(), anyObject())).thenReturn(receipt);
     when(parser.getShopDetails()).thenReturn(shopDetails);
-    till = new Till(receiptFactory, orderFactory, printer, parser);
+    when(cdf.getCustomerDetails(anyInt(),anyInt())).thenReturn(details);
+    when(ilf.getItemList(anyObject(), anyObject())).thenReturn(list);
+    till = new Till(receiptFactory, orderFactory, printer, parser, ilf, itemFactory, cdf);
     till.addTable(1,4);
   }
-//
-//  @Test
-//  public void addsTableDetails() {
-//    verify(order).updateCustomerDetails(1,4);
-//  }
+
+  @Test
+  public void addsTableDetails() {
+    verify(orderFactory).getOrder(details, list);
+  }
 
   @Test
   public void addsItemToOrder() {
