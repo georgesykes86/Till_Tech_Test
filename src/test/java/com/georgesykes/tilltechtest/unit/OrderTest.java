@@ -1,6 +1,8 @@
 package com.georgesykes.tilltechtest.unit;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 import com.georgesykes.tilltechtest.CustomerDetails;
 import com.georgesykes.tilltechtest.ItemList;
@@ -24,6 +26,7 @@ public class OrderTest {
   @BeforeEach
   public void setUp() {
     MockitoAnnotations.initMocks(this);
+    when(details.getTableNum()).thenReturn(2);
     order = factory.getOrder(details, list);
   }
 
@@ -31,6 +34,11 @@ public class OrderTest {
   public void addsItem() {
     order.addItem("Coffee", 3);
     verify(list).addItem("Coffee", 3);
+  }
+
+  @Test
+  public void returnTableNum() {
+    assertEquals(2, order.getTableNum());
   }
 
 }

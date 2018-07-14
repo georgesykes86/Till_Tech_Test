@@ -17,8 +17,8 @@ public class Order {
     this.itemList.addItem(item, quantity);
   }
 
-  public Object getTableNum() {
-    return "String";
+  public int getTableNum() {
+    return this.customerDetails.getTableNum();
   }
 
   public Object getPeopleNum() {
